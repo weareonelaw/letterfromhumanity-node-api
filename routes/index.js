@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-const uuidv4 = require('uuid/v4');
 
 const models = require('../models');
 const signsRoutes = require('./signs');

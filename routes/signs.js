@@ -1,17 +1,21 @@
 const express = require('express')
 const router = express.Router();
 
+const recaptchaSecure = require('../middlewares/recaptcha-secure');
 const models = require('../models');
 
-router.get('/', (req, res, next) => {
-  console.log(models.sign);
-  const sign = models.sign.create({
-    firstName: req.query.first,
-    lastName: req.query.last,
-    email: req.query.email,
+router.post('/', recaptchaSecure, (req, res, next) => {
+  models.sign.create({
+    firstName: req.body.first,
+    lastName: req.body.last,
+    email: req.body.email,
+    location: req.body.location,
   }).then(sign => {
-    res.send(sign);
-  });
+    res.send({
+      uuid: sign.uuid,
+      created: sign.createdAt,
+    });
+  }).catch(next);
 });
 
 module.exports = router;

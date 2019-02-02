@@ -12,6 +12,9 @@ const routes = require('./routes');
 
 app.use(compression());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 app.use(cookieParser());
 app.use(logger('dev'));
 
