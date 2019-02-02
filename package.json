@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "The API for the Letter From Humanity Project.",
   "main": "server.js",
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
@@ -17,7 +20,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:prod": "NODE_ENV=production node server.js"
   },
   "author": "",
   "license": "MIT"
