@@ -1,6 +1,7 @@
 require('dotenv').load();
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -17,6 +18,18 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(logger('dev'));
+
+const whiteList = ['https://weareonelaw.github.io'];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
 
 models.sequelize.authenticate().then(() => {
   console.log('✅ Connection to DB has been established.');
