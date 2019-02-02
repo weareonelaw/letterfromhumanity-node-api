@@ -39,7 +39,7 @@ models.sequelize.authenticate().then(() => {
       res.json({
         message: err.message,
         path: req.path,
-        timestamp: new Date(),
+        timestamp: (new Date()).getTime(),
         error: (app.get('env') === 'development') ? err : {},
       });
     });
