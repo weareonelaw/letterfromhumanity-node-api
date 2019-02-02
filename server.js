@@ -20,16 +20,20 @@ app.use(cookieParser());
 app.use(logger('dev'));
 
 const whiteList = ['https://weareonelaw.github.io'];
-app.use(cors({
-  origin: (origin, callback) => {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}));
+if (process.env.NODE_ENV === 'production') {
+  app.use(cors({
+    origin: (origin, callback) => {
+      if (whiteList.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }));
+} else {
+  console.log(`Skipping CORS checks (NODE_ENV=${process.env.NODE_ENV})`);
+}
 
 models.sequelize.authenticate().then(() => {
   console.log('✅ Connection to DB has been established.');
