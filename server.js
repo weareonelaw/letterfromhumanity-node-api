@@ -26,7 +26,9 @@ if (process.env.NODE_ENV === 'production') {
       if (whiteList.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        const error = new Error('Not allowed by CORS');
+        error.status = 400;
+        callback(error);
       }
     },
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
