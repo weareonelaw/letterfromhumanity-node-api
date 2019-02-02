@@ -12,5 +12,13 @@ Create an environment file in the root called `.env` and add the following keys 
 
 ```sh
 DATABASE_URL=
-PORT=
+```
+
+
+## Deploy
+
+App is running at Heroku. In order to deploy a new version, just push to the Heroku remote (master branch):
+
+```sh
+git push heroku master
 ```

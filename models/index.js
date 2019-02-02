@@ -3,9 +3,9 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 
-const config = require('../config');
+const { DATABASE_URL } = require('../config');
 
-const sequelize = new Sequelize(config.DATABASE_URL);
+const sequelize = new Sequelize(DATABASE_URL);
 const db = {};
 
 // https://github.com/sequelize/express-example/blob/master/models/index.js

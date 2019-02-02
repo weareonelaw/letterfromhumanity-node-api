@@ -3,11 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     uuid: {
       type: DataTypes.UUID,
       unique: true,
+      allowNull: false,
       defaultValue: DataTypes.UUIDV4,
-      notNull: true,
       validate: {
         isUUID: 4,
-        notNull: true,
       }
     },
     firstName: {
@@ -19,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING(50),
       unique: true,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true,
         isEmail: true,
       }
