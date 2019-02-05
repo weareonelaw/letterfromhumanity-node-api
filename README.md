@@ -8,9 +8,10 @@ In order to run it locally you need to have [node](https://nodejs.org) installed
 
 ```sh
 npm install
+npm start
 ```
 
-Create an environment file in the root called `.env` and add the following keys with proper values:
+The following environment variables needs to be set. Create an environment file in the root called `.env` and add the following keys with proper values:
 
 ```sh
 DATABASE_URL=
