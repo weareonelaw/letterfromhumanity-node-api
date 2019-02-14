@@ -17,6 +17,17 @@ The following environment variables needs to be set. Create an environment file 
 DATABASE_URL=
 ```
 
+### Postgres
+
+If you have Docker installed you can easily start a Postgres container to run your database ([reference])(https://hackernoon.com/dont-install-postgres-docker-pull-postgres-bee20e200198)
+. In order to keep the data persistant across container restarts you need to mount a folder to store the data in. Creating a folder (absolute path needed) and start the container:
+
+```sh
+mkdir -p $HOME/.docker-data/postgres
+docker run --rm --name pg-letterfromhumanity -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/.docker-data/postgres:/var/lib/postgresql/data postgres
+```
+
+Now you can connect by connecting to postgres://postgres:docker@localhost:5432/postgres 🎉
 
 ## Deploy
 
