@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    location: {
+      type: Sequelize.STRING(50),
+    }
   }, {});
   Signature.associate = function(models) {
     // associations can be defined here
