@@ -31,6 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     location: {
       type: Sequelize.STRING(50),
+    },
+    targetPerson: {
+      type: Sequelize.STRING(50),
     }
   }, {});
   Signature.associate = function(models) {
