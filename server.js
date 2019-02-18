@@ -11,6 +11,10 @@ const config = require('./config');
 const models = require('./models');
 const routes = require('./routes');
 
+const parse = require('pg-connection-string').parse;
+const URL = parse(process.env.DATABASE_URL);
+console.log(URL);
+
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

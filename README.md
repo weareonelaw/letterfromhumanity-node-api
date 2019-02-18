@@ -17,6 +17,12 @@ The following environment variables needs to be set. Create an environment file 
 DATABASE_URL=
 ```
 
+### Migrations
+
+[Sequelize migrations](http://docs.sequelizejs.com/manual/tutorial/migrations.html)
+
+
+
 ### Postgres
 
 If you have Docker installed you can easily start a Postgres container to run your database ([reference])(https://hackernoon.com/dont-install-postgres-docker-pull-postgres-bee20e200198)
@@ -35,4 +41,10 @@ App is running at Heroku. In order to deploy a new version, just push to the Her
 
 ```sh
 git push heroku master
+```
+
+### Migrations?
+
+```sh
+node_modules/.bin/sequelize db:migrate
 ```

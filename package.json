@@ -16,14 +16,17 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.3.0",
     "pg": "^7.8.0",
+    "pg-connection-string": "^2.0.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.42.0"
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "start:prod": "NODE_ENV=production node server.js"
+    "start:prod": "NODE_ENV=production node server.js",
+    "db:migrate": "npx sequelize db:migrate"
   },
   "author": "",
   "license": "MIT"
