@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
     location: {
-      type: Sequelize.STRING(50),
+      type: DataTypes.STRING(50),
     },
     targetPerson: {
-      type: Sequelize.STRING(50),
+      type: DataTypes.STRING(50),
     }
   }, {});
   Signature.associate = function(models) {

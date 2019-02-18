@@ -8,12 +8,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const config = require('./config');
-const models = require('./models');
+const models = require('./db/models');
 const routes = require('./routes');
 
 const parse = require('pg-connection-string').parse;
 const URL = parse(process.env.DATABASE_URL);
-console.log(URL);
 
 app.use(compression());
 app.use(bodyParser.json());

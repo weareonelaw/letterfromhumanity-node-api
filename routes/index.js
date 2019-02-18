@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
-const models = require('../models');
-const signsRoutes = require('./signs');
+const models = require('../db/models');
+const signaturesRoutes = require('./signatures');
 
 router.get('/', (req, res) => {
   res.send({
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.get('/stats', async (req, res, next) => {
   res.send({
-    signs: await models.sign.count(),
+    signs: await models.Signature.count(),
     timestamp: (new Date()).getTime(),
   })
 });
@@ -37,6 +37,7 @@ router.get('/health', (req, res, next) => {
   });
 });
 
-router.use('/signs', signsRoutes);
+router.use('/signs', signaturesRoutes);
+router.use('/signatures', signaturesRoutes);
 
 module.exports = router;
