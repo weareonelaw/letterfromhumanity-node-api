@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router();
+const { throttle } = require('lodash');
 
 const models = require('../db/models');
 const signaturesRoutes = require('./signatures');
+
+const throttledSignaturesCount = throttle(() => {
+  return models.Signature.count();
+}, 2000, { leading: true, trailing: false });
 
 router.get('/', (req, res) => {
   res.send({
@@ -13,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/stats', async (req, res, next) => {
   res.send({
-    signs: await models.Signature.count(),
+    signatures: await throttledSignaturesCount(),
     timestamp: (new Date()).getTime(),
   })
 });
