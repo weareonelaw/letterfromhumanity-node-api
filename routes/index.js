@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const { throttle } = require('lodash');
 
 const models = require('../db/models');
+const cors = require('../middlewares/cors');
 const signaturesRoutes = require('./signatures');
 
 const throttledSignaturesCount = throttle(() => {
@@ -42,7 +43,6 @@ router.get('/health', (req, res, next) => {
   });
 });
 
-router.use('/signs', signaturesRoutes);
-router.use('/signatures', signaturesRoutes);
+router.use('/signatures', cors, signaturesRoutes);
 
 module.exports = router;
