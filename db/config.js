@@ -13,6 +13,14 @@ module.exports = {
     port: dbURL.port || 5432,
     dialect: 'postgres'
   },
+  stage: {
+    username: dbURL.user,
+    password: dbURL.password,
+    database: dbURL.database,
+    host: dbURL.host,
+    port: dbURL.port || 5432,
+    dialect: 'postgres'
+  },
   test: {
     username: 'database_test',
     password: null,
