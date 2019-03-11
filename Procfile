@@ -1,1 +1,1 @@
-web: npx sequelize db:migrate && npm run start:prod
+web: npx sequelize db:migrate && npm run start:heroku
