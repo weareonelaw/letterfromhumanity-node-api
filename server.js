@@ -4,11 +4,9 @@ const app = express();
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
 const logger = require('morgan');
 
 const config = require('./config');
-const corsOptions = require('./cors-options');
 const models = require('./db/models');
 const routes = require('./routes');
 
@@ -22,8 +20,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(logger('dev'));
-
-app.use(cors(corsOptions));
 
 models.sequelize.authenticate().then(() => {
   console.log('✅ Connection to DB has been established.');
