@@ -3,7 +3,6 @@ const router = express.Router();
 const { throttle } = require('lodash');
 
 const models = require('../db/models');
-const cors = require('../middlewares/cors');
 const signaturesRoutes = require('./signatures');
 
 const throttledSignaturesCount = throttle(() => {
@@ -43,6 +42,6 @@ router.get('/health', (req, res, next) => {
   });
 });
 
-router.use('/signatures', cors, signaturesRoutes);
+router.use('/signatures', signaturesRoutes);
 
 module.exports = router;
