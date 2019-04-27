@@ -15,6 +15,7 @@ The following environment variables needs to be set. Create an environment file 
 
 ```sh
 DATABASE_URL=
+CORS_ALLOW_ORIGIN=
 ```
 
 ### Run Postgres in Docker
