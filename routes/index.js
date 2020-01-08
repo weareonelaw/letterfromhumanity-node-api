@@ -11,6 +11,11 @@ const throttledSignaturesCount = throttle(() => {
   return models.Signature.count();
 }, 2000, { leading: true, trailing: false });
 
+// CORS middleware
+// Allow all preflight requests
+// https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
+router.options('*', cors(corsOptions.all));
+
 router.get('/', cors(corsOptions.all), (req, res) => {
   res.send({
     ok: true,
