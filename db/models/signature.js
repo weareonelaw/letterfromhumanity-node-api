@@ -34,6 +34,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     targetPerson: {
       type: DataTypes.STRING(50),
+    },
+    recaptchaScore: {
+      type: DataTypes.FLOAT(),
     }
   }, {});
   Signature.associate = function(models) {

@@ -1,12 +1,15 @@
 
 const fetch = require('node-fetch');
+const { URLSearchParams } = require('url');
 
 const { RECAPTCHA_URL, RECAPTCHA_SECRET_KEY } = require('../config');
 
 /*
-https://developers.google.com/recaptcha/docs/verify
+https://developers.google.com/recaptcha/docs/v3#site_verify_response
 {
-  "success": true|false,
+  "success": true|false,      // whether this request was a valid reCAPTCHA token for your site
+  "score": number             // the score for this request (0.0 - 1.0)
+  "action": string            // the action name for this request (important to verify)
   "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
   "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
   "error-codes": [...]        // optional
@@ -18,17 +21,19 @@ module.exports = (req, res, next) => {
     return next();
   }
 
+  const params = new URLSearchParams();
+  params.append('secret', RECAPTCHA_SECRET_KEY);
+  params.append('response', req.body.recaptchaToken);
+
   fetch(RECAPTCHA_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      secret: RECAPTCHA_SECRET_KEY,
-      response: req.body.recaptchaToken,
-    }),
+    body: params,
   }).then(res => res.json()).then(data => {
     if (!data.success) {
       return next(new Error(`Recaptcha error: ${data['error-codes']}`));
     }
+
+    res.locals.recaptcha = data;
 
     // Verified!
     next();
