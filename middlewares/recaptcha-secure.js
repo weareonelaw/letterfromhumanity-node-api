@@ -16,6 +16,7 @@ https://developers.google.com/recaptcha/docs/v3#site_verify_response
 }
 */
 module.exports = (req, res, next) => {
+  res.locals.recaptcha = {};
   if (process.env.NODE_ENV !== 'production') {
     console.log(`Skipping captcha (NODE_ENV=${process.env.NODE_ENV})`);
     return next();
